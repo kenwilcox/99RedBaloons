@@ -36,6 +36,7 @@
 		BE00C32F19CFB3C300365052 /* 99RedBalloonsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 99RedBalloonsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE00C33419CFB3C300365052 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE00C33519CFB3C300365052 /* _9RedBalloonsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _9RedBalloonsTests.swift; sourceTree = "<group>"; };
+		BE00C33F19CFB47200365052 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +60,7 @@
 		BE00C31119CFB3C200365052 = {
 			isa = PBXGroup;
 			children = (
+				BE00C33F19CFB47200365052 /* README.md */,
 				BE00C31C19CFB3C200365052 /* 99RedBalloons */,
 				BE00C33219CFB3C300365052 /* 99RedBalloonsTests */,
 				BE00C31B19CFB3C200365052 /* Products */,
