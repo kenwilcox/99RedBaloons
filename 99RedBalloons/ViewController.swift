@@ -23,17 +23,8 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
-    images.append(UIImage(named: "RedBalloon1.jpg"))
-    images.append(UIImage(named: "RedBalloon2.jpg"))
-    images.append(UIImage(named: "RedBalloon3.jpg"))
-    images.append(UIImage(named: "RedBalloon4.jpg"))
-    
-    for var i = 1; i < 100; i++ {
-      var balloon = Balloon()
-      balloon.number = i
-      balloon.image = randomImage()
-      balloons.append(balloon)
-    }
+    setupBaloonImages()
+    createBalloons()
   }
 
   override func didReceiveMemoryWarning() {
@@ -52,6 +43,22 @@ class ViewController: UIViewController {
     }
   }
 
+  func setupBaloonImages() {
+    images.append(UIImage(named: "RedBalloon1.jpg"))
+    images.append(UIImage(named: "RedBalloon2.jpg"))
+    images.append(UIImage(named: "RedBalloon3.jpg"))
+    images.append(UIImage(named: "RedBalloon4.jpg"))
+  }
+  
+  func createBalloons() {
+    for var i = 1; i < 100; i++ {
+      var balloon = Balloon()
+      balloon.number = i
+      balloon.image = randomImage()
+      balloons.append(balloon)
+    }
+  }
+  
   func displayBalloon(balloon:Balloon) {
     UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
       self.imageView.image = balloon.image
