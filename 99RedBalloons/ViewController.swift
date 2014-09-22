@@ -17,6 +17,7 @@ class ViewController: UIViewController {
   var images: [UIImage] = []
   
   var index:Int = 0
+  var balloonIndex = 0
   var currentIndex = -1
   
   //MARK: - UI handlers
@@ -64,12 +65,12 @@ class ViewController: UIViewController {
     for var i = 1; i < 100; i++ {
       var balloon = Balloon()
       balloon.number = i
-      balloon.image = randomImage()
+      balloon.image = randomBalloon()
       balloons.append(balloon)
     }
   }
   
-  func randomImage() -> UIImage {
+  func randomBalloon() -> UIImage {
     var randomIndex: Int
     do {
       randomIndex = Int(arc4random_uniform(UInt32(images.count)))
@@ -77,6 +78,18 @@ class ViewController: UIViewController {
     self.currentIndex = randomIndex
     
     return images[randomIndex]
+  }
+  
+  func nextBalloon() -> UIImage {
+    var image = images[self.balloonIndex]
+    
+    if self.balloonIndex < images.count - 1 {
+      self.balloonIndex++
+    } else {
+      self.balloonIndex = 0
+    }
+    
+    return image
   }
 }
 
