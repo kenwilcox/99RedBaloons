@@ -13,10 +13,27 @@ class ViewController: UIViewController {
   @IBOutlet weak var balloonLabel: UILabel!
   @IBOutlet weak var imageView: UIImageView!
   
+  var balloons: [Balloon] = []
+  var images: [UIImage] = []
+  
+  var index:Int = 0
+  var currentIndex = -1
   
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
+    
+    images.append(UIImage(named: "RedBalloon1.jpg"))
+    images.append(UIImage(named: "RedBalloon2.jpg"))
+    images.append(UIImage(named: "RedBalloon3.jpg"))
+    images.append(UIImage(named: "RedBalloon4.jpg"))
+    
+    for var i = 1; i < 100; i++ {
+      var balloon = Balloon()
+      balloon.number = i
+      balloon.image = randomImage()
+      balloons.append(balloon)
+    }
   }
 
   override func didReceiveMemoryWarning() {
@@ -25,8 +42,32 @@ class ViewController: UIViewController {
   }
 
   @IBAction func nextBallonPressed(sender: AnyObject) {
-    println("Pressed")
+    let balloon = self.balloons[self.index]
+    displayBalloon(balloon)
+    
+    if self.index < balloons.count - 1 {
+      self.index++
+    } else {
+      self.index = 0
+    }
   }
 
+  func displayBalloon(balloon:Balloon) {
+    UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+      self.imageView.image = balloon.image
+      self.balloonLabel.text = "Balloon \(balloon.number)"
+      }, completion: { (finished: Bool) -> () in
+    })
+  }
+  
+  func randomImage() -> UIImage {
+    var randomIndex: Int
+    do {
+      randomIndex = Int(arc4random_uniform(UInt32(images.count)))
+    } while self.currentIndex == randomIndex
+    self.currentIndex = randomIndex
+    
+    return images[randomIndex]
+  }
 }
 
