@@ -19,6 +19,7 @@ class ViewController: UIViewController {
   var index:Int = 0
   var currentIndex = -1
   
+  //MARK: - UI handlers
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
@@ -42,7 +43,16 @@ class ViewController: UIViewController {
       self.index = 0
     }
   }
-
+  
+  func displayBalloon(balloon:Balloon) {
+    UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
+      self.imageView.image = balloon.image
+      self.balloonLabel.text = "Balloon \(balloon.number)"
+      }, completion: { (finished: Bool) -> () in
+    })
+  }
+  
+  //MARK: - Helper Methods
   func setupBaloonImages() {
     images.append(UIImage(named: "RedBalloon1.jpg"))
     images.append(UIImage(named: "RedBalloon2.jpg"))
@@ -57,14 +67,6 @@ class ViewController: UIViewController {
       balloon.image = randomImage()
       balloons.append(balloon)
     }
-  }
-  
-  func displayBalloon(balloon:Balloon) {
-    UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
-      self.imageView.image = balloon.image
-      self.balloonLabel.text = "Balloon \(balloon.number)"
-      }, completion: { (finished: Bool) -> () in
-    })
   }
   
   func randomImage() -> UIImage {
