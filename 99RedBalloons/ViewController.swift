@@ -15,9 +15,11 @@ class ViewController: UIViewController {
   
   var balloons: [Balloon] = []
   var images: [UIImage] = []
+  var colors: [UIColor] = []
   
   var index:Int = 0
   var balloonIndex = 0
+  var colorIndex = 0
   var currentIndex = -1
   
   //MARK: - UI handlers
@@ -26,6 +28,7 @@ class ViewController: UIViewController {
     // Do any additional setup after loading the view, typically from a nib.
     
     setupBaloonImages()
+    setupColors()
     createBalloons()
   }
 
@@ -49,11 +52,19 @@ class ViewController: UIViewController {
     UIView.transitionWithView(self.view, duration: 0.25, options: UIViewAnimationOptions.TransitionCrossDissolve, animations: {
       self.imageView.image = balloon.image
       self.balloonLabel.text = "Balloon \(balloon.number)"
+      self.balloonLabel.textColor = balloon.color
+      self.balloonLabel.backgroundColor = self.backColorForColor(balloon.color)
       }, completion: { (finished: Bool) -> () in
     })
   }
   
   //MARK: - Helper Methods
+  func setupColors() {
+    colors.append(UIColor.redColor())
+    colors.append(UIColor.whiteColor())
+    colors.append(UIColor.blueColor())
+  }
+  
   func setupBaloonImages() {
     images.append(UIImage(named: "RedBalloon1.jpg"))
     images.append(UIImage(named: "RedBalloon2.jpg"))
@@ -66,6 +77,7 @@ class ViewController: UIViewController {
       var balloon = Balloon()
       balloon.number = i
       balloon.image = randomBalloon()
+      balloon.color = nextColor()
       balloons.append(balloon)
     }
   }
@@ -90,6 +102,27 @@ class ViewController: UIViewController {
     }
     
     return image
+  }
+  
+  func nextColor() -> UIColor {
+    var color = colors[self.colorIndex]
+    if self.colorIndex < colors.count - 1 {
+      self.colorIndex++
+    } else {
+      self.colorIndex = 0
+    }
+    return color
+  }
+  
+  func backColorForColor(color: UIColor) -> UIColor {
+    var ret = UIColor.blackColor()
+    switch(color) {
+    case UIColor.redColor(): ret = UIColor.whiteColor()
+    case UIColor.whiteColor(): ret = UIColor.blueColor()
+    case UIColor.blueColor(): ret = UIColor.whiteColor()
+    default: ret = UIColor.blackColor()
+    }
+    return ret
   }
 }
 
