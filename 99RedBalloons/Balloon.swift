@@ -12,5 +12,5 @@ import UIKit
 struct Balloon {
   var number = 0
   var image = UIImage(CGImage:nil)
-  var color = UIColor.redColor()
+  var color = UIColor.blackColor()
 }
