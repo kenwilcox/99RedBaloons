@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+  
   @IBOutlet weak var balloonLabel: UILabel!
   @IBOutlet weak var imageView: UIImageView!
   
@@ -31,12 +31,12 @@ class ViewController: UIViewController {
     setupColors()
     createBalloons()
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
-
+  
   @IBAction func nextBallonPressed(sender: AnyObject) {
     let balloon = self.balloons[self.index]
     displayBalloon(balloon)
@@ -66,10 +66,10 @@ class ViewController: UIViewController {
   }
   
   func setupBaloonImages() {
-    images.append(UIImage(named: "RedBalloon1.jpg"))
-    images.append(UIImage(named: "RedBalloon2.jpg"))
-    images.append(UIImage(named: "RedBalloon3.jpg"))
-    images.append(UIImage(named: "RedBalloon4.jpg"))
+    images.append(UIImage(named: "RedBalloon1.jpg")!)
+    images.append(UIImage(named: "RedBalloon2.jpg")!)
+    images.append(UIImage(named: "RedBalloon3.jpg")!)
+    images.append(UIImage(named: "RedBalloon4.jpg")!)
   }
   
   func createBalloons() {
